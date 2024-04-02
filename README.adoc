@@ -1,12 +1,42 @@
+= NASA Server Log Analytics application
 
-= NASA Server Log Analytics Workshop
-
-# Introduction
+== Introduction
 Security breaches happen. And when they do, your server logs may be your best line of defense. We take the server-log analysis to the next level by speeding and improving security forensics and providing a low cost platform to show compliance. The dataset which we are going to use in this demo is of NASA-HTTP. It has HTTP requests to the NASA Kennedy Space Center WWW server in Florida. 
 
-## Before you start
+image::images/front.png[width=800]
+
+=== Before you start
 . Everything is Case-Sensitive.
-. Check all your connections and spellings
+. Check all your connections and spellings through the workshop
+
+
+=== Pre-requisites
+
+* Laptop with a supported OS (Windows 7 not supported).
+* A modern browser like Google Chrome or Firefox (IE not supported).
+
+=== Connecting to your cluster
+
+. *Please open the IP in your browser (shown on the main screen) and finish the registration! Use the registration code shown on the main screen* 
+
+. You will be asked to modify the password, *this password will be only used to access this registration site* if you accidentally close it. In this case use *Login* on this site. 
+
+. This registration process will open the firewall to your specific IP and assign you to one of the cluster nodes automatically. *Take note of your cluster ip address to avoid any further issues* 
+
+. Login into *Cloudera Manager* and familiarize yourself with the services installed. Below a screenshot of Chrome open with the main page after the registration, to open Cloudera Manager click on the following:
+
+NOTE: During the workshop *you will not use the previously selected password on the registration web page*, please *copy the username and password shown on the main screen* for the Cloudera Services. 
+
+NOTE: The credentials are case sensitive, the password has capital "S". 
+
+Below a screenshot of Chrome open with the main page after the registration, to open Cloudera Manager click on the following: 
+
+image::images/openclouderamanager.png[width=800]
+
+[source,shell]
+----
+-------------------------------------------------------
+----
 
 The necessary files have been preloaded to the machine which is running the Cloudera Private Cloud Base one node cluster to the 
 
@@ -17,3 +47,62 @@ The necessary files have been preloaded to the machine which is running the Clou
 
 This could be directly fetched from the hosts as well, also we can use minifi on the servers to collect and also prepare the raw log files and then send it to nifi, however in this short workshop the intention is to showcase the capabilities of nifi and creating a dashboard to gather insights, logs collection from edge devices is not part of this session. 
 
+
+
+
+
+== Steps
+
+. Create /nasademo
+. chmod -R 777 nasademo
+. Put NASALogs folder to /nasademo
+. Put GeoLite2-City.mmdb to /nasademo/GeoLite2-City.mmdb
+
+Logs will be put into /nifi folder automatically
+
+For Zeppelin be sure to run these
+
+On 7.1.9: 
+
+[source,shell]
+----
+cp /opt/cloudera/parcels/CDH-7.1.9-1.cdh7.1.9.p0.44702451/jars/hive-jdbc-* ./opt/cloudera/parcels/CDH-7.1.9-1.cdh7.1.9.p0.44702451/lib/zeppelin/interpreter/jdbc/
+
+cp /opt/cloudera/parcels/CDH-7.1.9-1.cdh7.1.9.p0.44702451/lib/hadoop/client/*.jar ./opt/cloudera/parcels/CDH-7.1.9-1.cdh7.1.9.p0.44702451/lib/zeppelin/interpreter/jdbc/
+
+----
+
+On 7.1.8: 
+
+[source,shell]
+----
+cp /opt/cloudera/parcels/CDH-7.1.8-1.cdh7.1.8.p0.30990532/jars/hive-jdbc-* ./opt/cloudera/parcels/CDH-7.1.8-1.cdh7.1.8.p0.30990532/lib/zeppelin/interpreter/jdbc/
+
+cp /opt/cloudera/parcels/CDH-7.1.8-1.cdh7.1.8.p0.30990532/lib/hadoop/client/*.jar ./opt/cloudera/parcels/CDH-7.1.8-1.cdh7.1.8.p0.30990532/lib/zeppelin/interpreter/jdbc/
+
+----
+
+In cloudera manager search for *Zeppelin Shiro Urls Block* on the Configuration tab, and locate the following role: 
+
+[source,json]
+----
+/api/interpreter/** =
+----
+
+and change it from: "authc, roles[{{zeppelin_admin_group}}]" to  *authc, roles[admin]*
+
+so the end result will be: 
+
+[source,json]
+----
+/api/interpreter/** = authc, roles[admin]
+----
+
+
+In zeppelin go to the upper right corner to user, and select interpreter, add a new interpreter with the name: Hive and group:jdbc, set the following:
+
+[source,json]
+----
+default.driver = org.apache.hive.jdbc.HiveDriver
+default.url = jdbc:hive2://localhost:10000/
+----
