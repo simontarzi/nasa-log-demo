@@ -1,0 +1,13 @@
+{
+  "type": "record",
+  "name": "SensorReading",
+  "namespace": "com.cloudera.example",
+  "doc": "This is a sample raw log reading",
+  "fields": [
+    {
+      "name": "log",
+      "doc": "One row of sample log. Going to be further processed with spark",
+      "type": "string"
+    }
+  ]
+}
