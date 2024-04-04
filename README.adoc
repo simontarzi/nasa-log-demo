@@ -338,38 +338,7 @@ image::images/smm5.png[width=800]
 
 . We will run some basic data negineering jobs to create Hive tables and perform some modifications to the data to prepare it for visualization. 
 
-. First we will make some administration work so we can use Zeppelin in this environemnt. Open Cloudera manager from the web UI. 
-
-. Locate *Zeppelin*, click on it. 
-+
-image::images/z0.png[width=800]
-
-. Go to the *configuration* tab, and search for *Zeppelin Shiro Urls Block* and locate the following line: */api/interpreter/**= authc, roles|{{zeppelin_admin_group}l*
-+
-image::images/z1.png[width=800]
-
-. Change it from: "authc, roles[{{zeppelin_admin_group}}]" to  *authc, roles[admin]* and click *Save Changes* so the end result will be: 
-
-[source,json]
-----
-/api/interpreter/** = authc, roles[admin]
-----
-+
-image::images/z2.png[width=800]
-
-. Wait for couple of seconds and an orange sign will appear, click on it. 
-+
-image::images/z22.png[width=800]
-
-. On the following screen click on *Restart Stale Services*. 
-+
-image::images/z3.png[width=800]
-
-. Check the *re-deploy client configuration* is  ticked, and click on *Continue*. 
-+
-image::images/z4.png[width=800]
-
-. Wait until it's finished, click on *Finish* once it's ready and go to the Cloudera manager and again open *Zeppelin*. 
+. Locate *Zeppelin* in the Cloudera manager UI, click on it. 
 +
 image::images/z0.png[width=800]
 
@@ -379,15 +348,17 @@ image::images/z5.png[width=800]
 
 . On the top right corner hit *Login* and add user user and password. 
 
-
-[[lab_5, Lab 5]]
-== Lab 5 - Clean the data and prepare it for analytics with pyspark, and create our visualization. 
-
 . Now on the Zeppelin main page click on *Import note* and click on *Select JSON file* and locate the *Cleaning-Raw-NASA-Log-Data.json* file and upload it, open the *Cleaning-Raw-NASA-Log-Data* note. 
++
+image::images/z10.png[width=800]
 
 . Click on the *Run All Paragraph* and observe how it executes the code. 
++
+image::images/z11.png[width=800]
 
-. We are done with this part, the data has been loaded to Hive and now ready for analytics. 
+. Make sure to check that every paragraph has been finished! 
+
+. We are done with this part, the data has been loaded to Hive tables and now ready for analytics. 
 
 . Now go to the web UI again and look for *CDP Data Visualization* and open it. 
 +
