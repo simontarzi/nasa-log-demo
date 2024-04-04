@@ -334,7 +334,7 @@ image::images/smm5.png[width=800]
 
 
 [[lab_4, Lab 4]]
-== Lab 4 - Prepare Zeppelin for running the prepared jobs
+== Lab 4 - Use Zeppelin to transfor and load data to Hive tables
 
 . We will run some basic data negineering jobs to create Hive tables and perform some modifications to the data to prepare it for visualization. 
 
@@ -359,6 +359,9 @@ image::images/z11.png[width=800]
 . Make sure to check that every paragraph has been finished! 
 
 . We are done with this part, the data has been loaded to Hive tables and now ready for analytics. 
+
+[[lab_5, Lab 5]]
+== Lab 5 - Loading visualiztion to DataViz 
 
 . Now go to the web UI again and look for *CDP Data Visualization* and open it. 
 +
