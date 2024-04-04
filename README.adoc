@@ -332,6 +332,8 @@ image::images/lq2.png[width=800]
 +
 image::images/smm5.png[width=800]
 
+. If you have checked that the data is coming to the topic, *AFTER 5 MINUTES STOP THE FLOW, OTHERWISE IT WILL FILL UP THE MACHINE'S STORAGE SPACE* 
+
 
 [[lab_4, Lab 4]]
 == Lab 4 - Use Zeppelin to transfor and load data to Hive tables
