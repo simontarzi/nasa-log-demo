@@ -4,7 +4,7 @@
 Security breaches happen. And when they do, your server logs may be your best line of defense. We take the server-log analysis to the next level by speeding and improving security forensics and providing a low cost platform to show compliance. The dataset which we are going to use in this demo is of NASA-HTTP. It has HTTP requests to the NASA Kennedy Space Center WWW server in Florida. 
 
 During this workshop you will get familiar with basic *csv processing in NiFi*, the *Cloudera Private Cloud Base solution*, you will also convert the data to json and *store it in Kafka* which is a powerful parallelized messaging queue allowing faster analytics and resilience. You are going to run also *data engineering jobs and persist the data in Hive* after the successful ingestion and enrichment and *create a stunning dashboard* to gather insights from the data. 
-+
+
 image::images/front.png[width=800]
 
 === Before you start
