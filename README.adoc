@@ -228,7 +228,7 @@ image::images/nifi17.png[width=800]
 [source,yaml]
 ----
 Property: filename
-Value: logsample-${now):format("HHmmssSSS")}-${UUIDO}.txt
+Value: logsample-${now():format("HHmmssSSS")}-${UUIDO}.txt
 ----
 +
 image::images/nifi18.png[width=800]
